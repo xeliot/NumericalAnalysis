@@ -73,8 +73,8 @@ def slope(function, x):
         value1 += function[len(function)-i-1]*((x-dx)**i)
         value2 += function[len(function)-i-1]*((x+dx)**i)
     '''
-    value1 = (math.e**(x-dx)) + ((x-dx)*math.log(x-dx, math.e))
-    value2 = (math.e**(x+dx)) + ((x+dx)*math.log(x+dx, math.e))
+    value1 = function(x-dx)
+    value2 = function(x+dx)
     previous = (value2-value1)/(2*dx)
     dx = dx/2.0
     '''
@@ -84,8 +84,8 @@ def slope(function, x):
         value1 += function[len(function)-i-1]*((x-dx)**i)
         value2 += function[len(function)-i-1]*((x+dx)**i)
     '''
-    value1 = (math.e**(x-dx)) + ((x-dx)*math.log(x-dx, math.e))
-    value2 = (math.e**(x+dx)) + ((x+dx)*math.log(x+dx, math.e))   
+    value1 = function(x-dx)
+    value2 = function(x+dx)
     current = (value2-value1)/(2*dx)
     while(True):
         '''
@@ -95,8 +95,8 @@ def slope(function, x):
             value1 += function[len(function)-i-1]*((x-dx)**i)
             value2 += function[len(function)-i-1]*((x+dx)**i)
         '''
-        value1 = (math.e**(x-dx)) + ((x-dx)*math.log(x-dx, math.e))
-        value2 = (math.e**(x+dx)) + ((x+dx)*math.log(x+dx, math.e))
+        value1 = function(x-dx)
+        value2 = function(x+dx)
         current = (value2-value1)/(2*dx)
         if(abs(math.atan(previous)-math.atan(current))<0.00000001):
             return current
@@ -110,7 +110,7 @@ print solve(array)
 '''
 
 def function(num):
-    return (math.e**num) + (num**2)
+    return (num**3) - (2*(num**2)) + num - 50
 
 def integration(function, x1, x2):
     previousdx = (x2-x1)/10.0
@@ -125,6 +125,13 @@ def integration(function, x1, x2):
         marker += currentdx
     return area
     
+def newtons(function):
+    previous = 0.0001
+    current = previous - (function(previous)/slope(function, previous))
+    while(abs(current - previous) > 0.00001):
+        previous = current
+        current = current - (function(current)/slope(function, current))
+    return current
     
 '''
 function = [3, -2, 4, -10]
