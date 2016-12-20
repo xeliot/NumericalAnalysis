@@ -108,7 +108,7 @@ array = [3, 0, -14, 0, 0, 13, 0, -14]
 #array = [2, 3, 4, 5]
 print solve(array)
 '''
-import math
+
 def function(num):
     return (math.e**num) + (num*(math.log(num))) - 30
 
