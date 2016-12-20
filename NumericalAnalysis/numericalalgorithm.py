@@ -108,9 +108,9 @@ array = [3, 0, -14, 0, 0, 13, 0, -14]
 #array = [2, 3, 4, 5]
 print solve(array)
 '''
-
+import math
 def function(num):
-    return (num**3) - (2*(num**2)) + num - 50
+    return (math.e**num) + (num*(math.log(num))) - 30
 
 def integration(function, x1, x2):
     previousdx = (x2-x1)/10.0
@@ -126,7 +126,7 @@ def integration(function, x1, x2):
     return area
     
 def newtons(function):
-    previous = 0.0001
+    previous = 1.1111
     current = previous - (function(previous)/slope(function, previous))
     while(abs(current - previous) > 0.00001):
         previous = current
