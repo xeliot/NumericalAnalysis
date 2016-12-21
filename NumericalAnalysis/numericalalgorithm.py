@@ -63,7 +63,10 @@ def recurse(lowerbound, upperbound, marker, function):
     else:
         return recurse(lowerbound, marker, marker-((marker-lowerbound)/2.0), function)    
     
-    
+
+def function(num):
+    return (-1*num*(math.e**num))
+
 def slope(function, x):
     dx = 0.00001
     '''
@@ -73,6 +76,10 @@ def slope(function, x):
         value1 += function[len(function)-i-1]*((x-dx)**i)
         value2 += function[len(function)-i-1]*((x+dx)**i)
     '''
+    print function
+    print x
+    print dx
+    print x-dx
     value1 = function(x-dx)
     value2 = function(x+dx)
     previous = (value2-value1)/(2*dx)
@@ -109,9 +116,6 @@ array = [3, 0, -14, 0, 0, 13, 0, -14]
 print solve(array)
 '''
 
-def function(num):
-    return (math.e**num) + (num*(math.log(num))) - 30
-
 def integration(function, x1, x2):
     previousdx = (x2-x1)/10.0
     currentdx = previousdx/2.0
@@ -126,13 +130,30 @@ def integration(function, x1, x2):
     return area
     
 def newtons(function):
-    previous = 1.1111
+    previous = 1.11111
     current = previous - (function(previous)/slope(function, previous))
-    while(abs(current - previous) > 0.00001):
+    while(abs(current - previous) > 0.000001):
         previous = current
         current = current - (function(current)/slope(function, current))
     return current
-    
+
+def minimum(function):
+    previous = 3.11111
+    a = (slope(function, previous) - slope(function, previous-0.000000001))/0.000000001
+    current = previous - (slope(function, previous)/a)
+    while(abs(current - previous) > 0.000001):
+        previous = current
+        a = (slope(function, previous) - slope(function, previous-0.000000001))/0.000000001
+        current = current - (slope(function, previous)/a)
+    return current
+
+def gradient(function):
+    lr = 0.1
+    x = 0
+    while(abs(slope(function, x)-0.000000000) > 0.000000001):
+        x += lr*slope(x)
+    return x
+
 '''
 function = [3, -2, 4, -10]
 x = 2.2
