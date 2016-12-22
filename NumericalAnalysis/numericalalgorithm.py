@@ -65,7 +65,7 @@ def recurse(lowerbound, upperbound, marker, function):
     
 
 def function(num):
-    return (-1*num*(math.e**num))
+    return (4*(num**4))-(3*(num**3))+(2*(num**2))-num+20
 
 def slope(function, x):
     dx = 0.00001
@@ -76,10 +76,6 @@ def slope(function, x):
         value1 += function[len(function)-i-1]*((x-dx)**i)
         value2 += function[len(function)-i-1]*((x+dx)**i)
     '''
-    print function
-    print x
-    print dx
-    print x-dx
     value1 = function(x-dx)
     value2 = function(x+dx)
     previous = (value2-value1)/(2*dx)
@@ -150,8 +146,11 @@ def minimum(function):
 def gradient(function):
     lr = 0.1
     x = 0
-    while(abs(slope(function, x)-0.000000000) > 0.000000001):
-        x += lr*slope(x)
+    count = 0
+    while(abs(slope(function, x)) > 0.000000001):
+        x -= lr*slope(function, x)
+        count += 1
+    print count
     return x
 
 '''
