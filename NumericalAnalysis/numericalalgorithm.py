@@ -64,8 +64,14 @@ def recurse(lowerbound, upperbound, marker, function):
         return recurse(lowerbound, marker, marker-((marker-lowerbound)/2.0), function)    
     
 
-def function(num):
-    return (4*(num**4))-(3*(num**3))+(2*(num**2))-num+20
+def function1(num):
+    return num**2
+
+def function2(num):
+    return -(num**2) + 5
+
+def combined_function(num):
+    return function1(num) - function2(num)
 
 def slope(function, x):
     dx = 0.00001
@@ -152,6 +158,9 @@ def gradient(function):
         count += 1
     print count
     return x
+
+def solve_system(function):
+    return newtons(function)
 
 '''
 function = [3, -2, 4, -10]
