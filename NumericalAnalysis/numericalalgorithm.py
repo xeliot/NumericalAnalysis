@@ -65,10 +65,10 @@ def recurse(lowerbound, upperbound, marker, function):
     
 
 def function1(num):
-    return num**2
+    return math.e**(num-3)
 
 def function2(num):
-    return -(num**2) + 5
+    return num * math.log(num)
 
 def combined_function(num):
     return function1(num) - function2(num)
@@ -161,6 +161,9 @@ def gradient(function):
 
 def solve_system(function):
     return newtons(function)
+
+def area(function1, function2, x1, x2):
+    return abs(integration(function1, x1, x2) - integration(function2, x1, x2))
 
 '''
 function = [3, -2, 4, -10]
