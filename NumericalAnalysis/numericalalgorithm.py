@@ -165,9 +165,5 @@ def solve_system(function):
 def area(function1, function2, x1, x2):
     return abs(integration(function1, x1, x2) - integration(function2, x1, x2))
 
-'''
-function = [3, -2, 4, -10]
-x = 2.2
-print slope(function, x)
-'''
-
+print solve_system(combined_function)
+print area(function1, function2, 2, 4)
